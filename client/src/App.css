@@ -1,0 +1,17 @@
+.App {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputText,
+.outputText {
+  resize: none;
+  margin: 10px;
+}
+
+textarea::placeholder {
+  color: gray;
+}
