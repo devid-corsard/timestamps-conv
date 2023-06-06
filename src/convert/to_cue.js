@@ -39,6 +39,7 @@ const parseByScema = (input, schema) =>
   input
     .split('\n')
     .filter((string) => string.length)
+    .map(string => string.trim())
     .map(schemas[schema]);
 
 const trackNumFromIdx = idx => idx + 1 < 10 ? `0${idx + 1}` : `${idx + 1}`;
