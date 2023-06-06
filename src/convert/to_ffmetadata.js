@@ -5,7 +5,7 @@ const parseStartEndTitle = (input) => {
   const arrayFromTxt = input.split('\n').filter((string) => string.length);
 
   const arrTimeAndTitle = arrayFromTxt.map((string) => {
-    const [time, ...title] = string.split(' ').filter((word) => word != '-');
+    const [time, ...title] = string.split(' ').filter((word) => word !== '-');
     return [time, title.join(' ')];
   });
 
@@ -15,7 +15,7 @@ const parseStartEndTitle = (input) => {
 
       const next = index + 1;
 
-      const endTime = next != array.length ? array[next][0] : undefined;
+      const endTime = next !== array.length ? array[next][0] : undefined;
 
       const end = endTime ? timeToSeconds(endTime) : start + 10;
 
