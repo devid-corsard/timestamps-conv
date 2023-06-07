@@ -1,16 +1,21 @@
-const AlbumInfo = ({ tags, setTags }) => {
-  const handleTags = (e) => {
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import React from 'react';
+import Tags from "../dto/tags";
+import Schemas from "../dto/songNameSchemas";
+
+const AlbumInfo = ({ tags, setTags }: { tags: Tags, setTags: Dispatch<SetStateAction<Tags>> }) => {
+  const handleTags = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setTags((prevData) => ({ ...prevData, [name]: value }));
+    setTags((prevData: Tags) => ({ ...prevData, [name]: value }));
   };
   return <div className="albumInfo">
     <label>
       Select schema:
       <select name="schema" id="schema" onChange={handleTags}>
-        <option value="time artist - title">time artist - title</option>
-        <option value="time title">time title</option>
-        <option value="time - title">time - title</option>
-        <option value="time - artist - title">time - atrist - title</option>
+        <option value={Schemas.A}>{Schemas.A}</option>
+        <option value={Schemas.B}>{Schemas.B}</option>
+        <option value={Schemas.C}>{Schemas.C}</option>
+        <option value={Schemas.D}>{Schemas.D}</option>
       </select>
     </label>
     <label>

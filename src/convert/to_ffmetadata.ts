@@ -1,7 +1,9 @@
-const timeToSeconds = (time) =>
-  time.split(':').reduce((acc, time) => 60 * acc + +time);
+import FFMetaData from "../dto/ffmetadata";
 
-const parseStartEndTitle = (input) => {
+const timeToSeconds = (time: string): string =>
+  time.split(':').reduce((acc, time) => String(60 * Number(acc) + Number(time)));
+
+const parseStartEndTitle = (input: string): FFMetaData[] => {
   const arrayFromTxt = input.split('\n').filter((string) => string.length);
 
   const arrTimeAndTitle = arrayFromTxt.map((string) => {
@@ -9,7 +11,7 @@ const parseStartEndTitle = (input) => {
     return [time, title.join(' ')];
   });
 
-  const arrOfObjects = arrTimeAndTitle.map(
+  const arrOfObjects: FFMetaData[] = arrTimeAndTitle.map(
     ([startTime, title], index, array) => {
       const start = timeToSeconds(startTime);
 
@@ -26,15 +28,17 @@ const parseStartEndTitle = (input) => {
   return arrOfObjects;
 };
 
-const metaChapterScheme = (start, end, title) =>
-  `[CHAPTER]\nTIMEBASE=1/1\nSTART=${start}\nEND=${end}\ntitle=${title}\n`;
+const metaChapterScheme = (data: FFMetaData): string =>
+  `[CHAPTER]\nTIMEBASE=1/1\nSTART=${data.start}\nEND=${data.end}\ntitle=${data.title}\n`;
 
-export const youtubeTimestrampsToChapterText = (inputData) => {
-  const chaptersText = parseStartEndTitle(inputData)
-    .map(({ start, end, title }) => metaChapterScheme(start, end, title))
+const youtubeTimestampsToChapterText = (inputData: string) => {
+  const chaptersText: string = parseStartEndTitle(inputData)
+    .map(metaChapterScheme)
     .join('');
 
   const outputText = ';FFMETADATA1\n' + chaptersText;
 
   return outputText;
 };
+
+export default youtubeTimestampsToChapterText;

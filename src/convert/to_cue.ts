@@ -1,3 +1,4 @@
+import ParseData from "../dto/parseData";
 import Song from "../dto/song";
 import Schemas from "../dto/songNameSchemas";
 import Tags from "../dto/tags";
@@ -57,7 +58,7 @@ const metaChapterScheme = (idx: number, data: Song): string => {
     return `  TRACK ${trackNumFromIdx(idx)} AUDIO\n    TITLE "${data.title}"\n    INDEX 01 ${data.time}\n`;
   }
 }
-const youtubeTimestrampsToCue = (inputData: Tags): string => {
+const youtubeTimestampsToCue = (inputData: ParseData): string => {
   const chaptersText = parseByScema(inputData.timestamps, inputData.schema)
     .map((data, idx) => metaChapterScheme(idx, data))
     .join('');
@@ -75,4 +76,4 @@ const youtubeTimestrampsToCue = (inputData: Tags): string => {
   return outputText;
 };
 
-export default youtubeTimestrampsToCue;
+export default youtubeTimestampsToCue;
