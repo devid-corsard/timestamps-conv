@@ -6,12 +6,33 @@
   justify-content: center;
 }
 
+.albumInfo{
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  /* justify-content: center; */
+}
+
+input {
+  width: 100%;
+  font-size: 14px;
+}
+
+select {
+  font-size: 18px;
+}
+
 .inputText,
 .outputText {
   resize: none;
   margin: 10px;
 }
 
+textarea {
+  font-size:18px;
+}
+
 textarea::placeholder {
   color: gray;
+  font-size:18px;
 }

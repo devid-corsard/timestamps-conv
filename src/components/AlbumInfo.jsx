@@ -3,7 +3,7 @@ const AlbumInfo = ({ tags, setTags }) => {
     const { name, value } = e.target;
     setTags((prevData) => ({ ...prevData, [name]: value }));
   };
-  return <>
+  return <div className="albumInfo">
     <label>
       Select schema:
       <select name="schema" id="schema" onChange={handleTags}>
@@ -67,7 +67,7 @@ const AlbumInfo = ({ tags, setTags }) => {
         onChange={handleTags}
       />
     </label>
-  </>
+  </div>
 }
 
 export default AlbumInfo;
