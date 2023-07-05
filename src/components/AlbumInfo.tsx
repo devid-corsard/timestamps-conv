@@ -17,14 +17,14 @@ function AlbumInfo({ tags, setTags }: Props) {
     return <div className="albumInfo">
         <label>
             Select schema:
-            <select name="schema" id="schema" onChange={handleTags} defaultValue={Schemas.D}>
+            <select name="schema" id="schema" onChange={handleTags} value={tags.schema}>
                 <option value={Schemas.A}>{Schemas.A}</option>
                 <option value={Schemas.B}>{Schemas.B}</option>
                 <option value={Schemas.C}>{Schemas.C}</option>
                 <option value={Schemas.D}>{Schemas.D}</option>
                 <option value={Schemas.E}>{Schemas.E}</option>
             </select>
-            {tags.schema == Schemas.E && <CustomSchemaInput setTags={setTags} />}
+            {tags.schema == Schemas.E && <CustomSchemaInput tags={tags} setTags={setTags} />}
         </label>
         <label>
             Date:

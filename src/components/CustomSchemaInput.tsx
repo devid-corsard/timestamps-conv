@@ -14,11 +14,12 @@ const defaultCustomSchema: CustomSchema = {
 };
 
 type Props = {
+    tags: Tags,
     setTags: Dispatch<SetStateAction<Tags>>
 };
 
-function CustomSchemaInput({ setTags }: Props) {
-    const [customSchema, setCustomScema] = useState<CustomSchema>(defaultCustomSchema);
+function CustomSchemaInput({ setTags, tags }: Props) {
+    const [customSchema, setCustomScema] = useState<CustomSchema>(tags.customSchema || defaultCustomSchema);
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         const nextCustomSchema = { ...customSchema, [name]: value };
@@ -35,6 +36,7 @@ function CustomSchemaInput({ setTags }: Props) {
                     <option value={SongName.Title}>{SongName.Title}</option>
                     <option value={SongName.Artist}>{SongName.Artist}</option>
                     <option value={SongName.None}>{SongName.None}</option>
+                    <option value={SongName.Skip}>{SongName.Skip}</option>
                 </select>
                 <input type="text" value={customSchema.divider1} name="divider1" onChange={handleChange} />
                 <select name="arg2" onChange={handleChange} value={customSchema.arg2}>
@@ -42,6 +44,7 @@ function CustomSchemaInput({ setTags }: Props) {
                     <option value={SongName.Title}>{SongName.Title}</option>
                     <option value={SongName.Artist}>{SongName.Artist}</option>
                     <option value={SongName.None}>{SongName.None}</option>
+                    <option value={SongName.Skip}>{SongName.Skip}</option>
                 </select>
                 <input type="text" value={customSchema.divider2} name="divider2" onChange={handleChange} />
                 <select name="arg3" onChange={handleChange} value={customSchema.arg3}>
@@ -49,6 +52,7 @@ function CustomSchemaInput({ setTags }: Props) {
                     <option value={SongName.Title}>{SongName.Title}</option>
                     <option value={SongName.Artist}>{SongName.Artist}</option>
                     <option value={SongName.None}>{SongName.None}</option>
+                    <option value={SongName.Skip}>{SongName.Skip}</option>
                 </select>
                 <input type="text" value={customSchema.postfix} name="postfix" onChange={handleChange} />
             </div>

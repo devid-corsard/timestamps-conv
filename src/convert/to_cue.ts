@@ -81,7 +81,7 @@ const parseByCustomSchema = (input: string, customSchema: CustomSchema): Song[] 
             args
                 .filter(arg => arg !== SongName.None)
                 .forEach((arg, i) => {
-                    arg !== SongName.None
+                    arg !== SongName.Skip && arg !== SongName.None
                         ? song[arg] = songItems[i]?.trim()
                         : 0;
                 });
