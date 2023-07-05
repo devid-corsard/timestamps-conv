@@ -1,6 +1,8 @@
+import { SongName } from "./songName";
+
 interface Song {
-  time: string;
-  title: string;
-  artist?: string;
-};
+    [SongName.Time]: string;
+    [SongName.Title]: string;
+    [SongName.Artist]?: string;
+}
 export default Song;
