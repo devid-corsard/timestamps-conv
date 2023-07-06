@@ -1,7 +1,8 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { CustomSchema } from "../dto/customSchemaType";
 import { SongName } from "../dto/songName";
 import Tags from "../dto/tags";
+import { Typography } from "@material-tailwind/react";
 
 const defaultCustomSchema: CustomSchema = {
     prefix: '',
@@ -20,7 +21,7 @@ type Props = {
 
 function CustomSchemaInput({ setTags, tags }: Props) {
     const [customSchema, setCustomScema] = useState<CustomSchema>(tags.customSchema || defaultCustomSchema);
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         const nextCustomSchema = { ...customSchema, [name]: value };
         setCustomScema(nextCustomSchema);
@@ -28,33 +29,72 @@ function CustomSchemaInput({ setTags, tags }: Props) {
     };
     return (
         <div>
-            <h2>select own scema:</h2>
-            <div className="customSchemaInput">
-                <input type="text" value={customSchema.prefix} name="prefix" onChange={handleChange} />
-                <select name="arg1" onChange={handleChange} value={customSchema.arg1}>
+            <Typography variant="h5" color="gray" className="ml-auto mr-auto w-56">Schema constructor:</Typography>
+            <div className="flex gap-1 text-md justify-center">
+                <input
+                    type="text"
+                    value={customSchema.prefix}
+                    name="prefix"
+                    onChange={handleChange}
+                    className="border-2 border-blue-gray-100 w-[2rem] text-black text-center p-1"
+                />
+                <select
+                    name="arg1"
+                    onChange={handleChange}
+                    value={customSchema.arg1}
+                    className="border-2 border-blue-gray-100 w-[4rem] text-black bg-blue-gray-50 text-center p-0"
+                >
                     <option value={SongName.Time}>{SongName.Time}</option>
                     <option value={SongName.Title}>{SongName.Title}</option>
                     <option value={SongName.Artist}>{SongName.Artist}</option>
                     <option value={SongName.None}>{SongName.None}</option>
                     <option value={SongName.Skip}>{SongName.Skip}</option>
                 </select>
-                <input type="text" value={customSchema.divider1} name="divider1" onChange={handleChange} />
-                <select name="arg2" onChange={handleChange} value={customSchema.arg2}>
+                <input
+                    type="text"
+                    value={customSchema.divider1}
+                    name="divider1"
+                    onChange={handleChange}
+                    className="border-2 border-blue-gray-100 w-[2rem] text-black text-center p-1"
+                />
+                <select
+                    name="arg2"
+                    onChange={handleChange}
+                    value={customSchema.arg2}
+                    className="border-2 border-blue-gray-100 w-[4rem] text-black bg-blue-gray-50 text-center p-0"
+                >
                     <option value={SongName.Time}>{SongName.Time}</option>
                     <option value={SongName.Title}>{SongName.Title}</option>
                     <option value={SongName.Artist}>{SongName.Artist}</option>
                     <option value={SongName.None}>{SongName.None}</option>
                     <option value={SongName.Skip}>{SongName.Skip}</option>
                 </select>
-                <input type="text" value={customSchema.divider2} name="divider2" onChange={handleChange} />
-                <select name="arg3" onChange={handleChange} value={customSchema.arg3}>
+                <input
+                    type="text"
+                    value={customSchema.divider2}
+                    name="divider2"
+                    onChange={handleChange}
+                    className="border-2 border-blue-gray-100 w-[2rem] text-black text-center p-1"
+                />
+                <select
+                    name="arg3"
+                    onChange={handleChange}
+                    value={customSchema.arg3}
+                    className="border-2 border-blue-gray-100 w-[4rem] text-black bg-blue-gray-50 text-center p-0"
+                >
                     <option value={SongName.Time}>{SongName.Time}</option>
                     <option value={SongName.Title}>{SongName.Title}</option>
                     <option value={SongName.Artist}>{SongName.Artist}</option>
                     <option value={SongName.None}>{SongName.None}</option>
                     <option value={SongName.Skip}>{SongName.Skip}</option>
                 </select>
-                <input type="text" value={customSchema.postfix} name="postfix" onChange={handleChange} />
+                <input
+                    type="text"
+                    value={customSchema.postfix}
+                    name="postfix"
+                    onChange={handleChange}
+                    className="border-2 border-blue-gray-100 w-[2rem] text-black text-center p-1"
+                />
             </div>
         </div>
     )

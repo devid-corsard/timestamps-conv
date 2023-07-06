@@ -1,8 +1,8 @@
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import React from 'react';
 import Tags from "../dto/tags";
 import Schemas from "../dto/songNameSchemas";
 import CustomSchemaInput from "./CustomSchemaInput";
+import { Select, Option, Input } from "@material-tailwind/react";
 
 type Props = {
     tags: Tags,
@@ -14,72 +14,68 @@ function AlbumInfo({ tags, setTags }: Props) {
         const { name, value } = e.target;
         setTags((prevData: Tags) => ({ ...prevData, [name]: value }));
     };
-    return <div className="albumInfo">
-        <label>
-            Select schema:
-            <select name="schema" id="schema" onChange={handleTags} value={tags.schema}>
-                <option value={Schemas.A}>{Schemas.A}</option>
-                <option value={Schemas.B}>{Schemas.B}</option>
-                <option value={Schemas.C}>{Schemas.C}</option>
-                <option value={Schemas.D}>{Schemas.D}</option>
-                <option value={Schemas.E}>{Schemas.E}</option>
-            </select>
-            {tags.schema == Schemas.E && <CustomSchemaInput tags={tags} setTags={setTags} />}
-        </label>
-        <label>
-            Date:
-            <input
-                type="text"
-                name="date"
-                value={tags.date}
-                onChange={handleTags}
-            />
-        </label>
-        <label>
-            Genre:
-            <input
-                type="text"
-                name="genre"
-                value={tags.genre}
-                onChange={handleTags}
-            />
-        </label>
-        <label>
-            Album Name:
-            <input
-                type="text"
-                name="albumName"
-                value={tags.albumName}
-                onChange={handleTags}
-            />
-        </label>
-        <label>
-            Performer:
-            <input
-                type="text"
-                name="performer"
-                value={tags.performer}
-                onChange={handleTags}
-            />
-        </label>
-        <label>
-            Comment:
-            <input
-                type="text"
-                name="comment"
-                value={tags.comment}
-                onChange={handleTags}
-            />
-        </label>
-        <label>
-            Filename:
-            <input
-                type="text"
-                name="filename"
-                value={tags.filename}
-                onChange={handleTags}
-            />
-        </label>
+    return <div className="flex flex-col gap-6 p-2">
+        <Select
+            label="Select schema"
+            onChange={e => setTags({ ...tags, schema: e as Schemas })}
+            value={tags.schema}
+            color="lime"
+        >
+            <Option value={Schemas.A}>{Schemas.A}</Option>
+            <Option value={Schemas.B}>{Schemas.B}</Option>
+            <Option value={Schemas.C}>{Schemas.C}</Option>
+            <Option value={Schemas.D}>{Schemas.D}</Option>
+            <Option value={Schemas.E}>{Schemas.E}</Option>
+        </Select>
+        {tags.schema == Schemas.E && <CustomSchemaInput tags={tags} setTags={setTags} />}
+        <Input
+            type="text"
+            label="Date"
+            name="date"
+            value={tags.date}
+            onChange={handleTags}
+            color="lime"
+        />
+        <Input
+            type="text"
+            label="Genre"
+            name="genre"
+            value={tags.genre}
+            onChange={handleTags}
+            color="lime"
+        />
+        <Input
+            type="text"
+            name="albumName"
+            label="Album"
+            value={tags.albumName}
+            onChange={handleTags}
+            color="lime"
+        />
+        <Input
+            type="text"
+            name="performer"
+            label="Performer"
+            value={tags.performer}
+            onChange={handleTags}
+            color="lime"
+        />
+        <Input
+            type="text"
+            name="comment"
+            label="Comment"
+            value={tags.comment}
+            onChange={handleTags}
+            color="lime"
+        />
+        <Input
+            type="text"
+            name="filename"
+            label="Filename"
+            value={tags.filename}
+            onChange={handleTags}
+            color="lime"
+        />
     </div>
 }
 
