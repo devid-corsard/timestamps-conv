@@ -5,7 +5,6 @@ import OutFormat from './dto/outformat';
 import Schemas from './dto/songNameSchemas';
 import Tags from './dto/tags';
 import youtubeTimestampsToCue from './convert/to_cue';
-import { Button, Select, Textarea, Typography, Option } from '@material-tailwind/react';
 
 function App() {
     const [timestamps, setTimestapms] = useState('');
@@ -31,70 +30,65 @@ function App() {
         }
     };
 
-    const handleFormat = (e?: string) => setFormat(e as OutFormat);
 
     return (
-        <div className='flex flex-col gap-4 p-2 md:max-w-md md:mr-auto md:ml-auto'>
-            <Typography
-                variant='h4'
-                color='deep-orange'
-                textGradient
-                className="text-center md:text-2xl"
-            >
+        <div className='flex flex-col gap-4 p-2 md:max-w-3xl md:mx-auto text-lg dark:text-slate-300'>
+            <h1 className="bg-gradient-to-br from-lime-500 to-orange-500 bg-clip-text text-transparent \
+            text-center text-4xl font-bold border-2 p-3 border-lime-500" >
                 Simple youtube timestamps converter
-            </Typography>
-            <div>
-                <Textarea
-                    label="paste timestamps here..."
-                    size='lg'
-                    color='lime'
-                    onChange={(e) => setTimestapms(e.target.value)}
-                    className='h-[10rem] dark:text-white text-md'
-                    containerProps={{ className: "dark:bg-[#111]" }}
-                ></Textarea>
-            </div>
-            <div className='w-72 ml-auto mr-auto'>
-                <Select
-                    label="Select output format"
-                    color='lime'
+            </h1>
+            <textarea
+                placeholder="paste timestamps here..."
+                onChange={(e) => setTimestapms(e.target.value)}
+                className='h-[10rem] text-md border-2 p-2 border-lime-300 outline-lime-500 \
+                dark:text-slate-300 dark:bg-slate-900'
+            ></textarea>
+            <div className='grid grid-cols-[2fr_3fr] md:grid-cols-2'>
+                <p>Select output format:</p>
+                <select
                     value={format}
-                    onChange={handleFormat}
-                    className='dark:bg-[#111] dark:text-white'
+                    onChange={e => setFormat(e.target.value as OutFormat)}
+                    className='bg-lime-500 text-white text-center p-2 \
+                    h-12 dark:bg-lime-500/75'
                 >
-                    <Option value={OutFormat.Cue}>CUE</Option>
-                    <Option value={OutFormat.Ffmetadata}>ffmetadata</Option>
-                </Select>
+                    <option value={OutFormat.Cue}>CUE</option>
+                    <option value={OutFormat.Ffmetadata}>ffmetadata</option>
+                </select>
             </div>
             {format === OutFormat.Cue && <AlbumInfo tags={tags} setTags={setTags} />}
-            <Button onClick={handleClick} color='lime' className='w-32 m-2 ml-auto mr-auto' >
+            <button
+                onClick={handleClick}
+                className='bg-gradient-to-r from-lime-500 to-orange-500 rounded-md \
+                w-32 m-2 mx-auto text-white font-bold p-2 shadow-lime-300 shadow-md \
+                dark:shadow-lime-800'
+            >
                 Convert
-            </Button>
-            <div>
-                <Textarea
-                    label="conversion result should be here..."
-                    value={data}
-                    disabled
-                    color='lime'
-                    className='h-[10rem]'
-                    resize={true}
-                ></Textarea>
-            </div>
-            <Button className='w-64 ml-auto mr-auto' color='teal'>
+            </button>
+            <textarea
+                placeholder="conversion result should be here..."
+                value={data}
+                readOnly
+                className='h-[10rem] text-md border-2 p-2 border-lime-300 outline-lime-500 \
+                dark:text-slate-300 dark:bg-slate-900'
+            ></textarea>
+            <button className='bg-gradient-to-r from-lime-500 to-orange-500 rounded-md \
+            w-64 mx-auto bg-lime-500 text-white font-bold p-2 shadow-lime-300 shadow-md \
+            dark:shadow-lime-800'>
                 <a
                     download={`${tags.filename.split('.').slice(0, -1).join('.')}.${format}`}
                     href={`data:text/plain;charset=utf-8,${encodeURIComponent(data)}`}>
                     Download {format} File *
                 </a>
-            </Button>
+            </button>
             {
                 format === OutFormat.Ffmetadata && <>
-                    <Typography variant='h5' className="mb-2">* Example: </Typography>
+                    <h5 className="mb-2">* Example: </h5>
                     <code>
                         ffmpeg - i file.mp4 - i file.ffmetadata - map_metadata 1 file_with_metadata.mp4
                     </code></>
             } {
                 format === 'cue' && <>
-                    <Typography variant='h5'>* Download to the same directory as music file </Typography>
+                    <h5 >* Download to the same directory as music file </h5>
                 </>
             }
         </div>

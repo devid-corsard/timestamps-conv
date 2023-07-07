@@ -2,7 +2,6 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { CustomSchema } from "../dto/customSchemaType";
 import { SongName } from "../dto/songName";
 import Tags from "../dto/tags";
-import { Typography } from "@material-tailwind/react";
 
 const defaultCustomSchema: CustomSchema = {
     prefix: '',
@@ -29,20 +28,21 @@ function CustomSchemaInput({ setTags, tags }: Props) {
     };
     return (
         <div>
-            <Typography variant="h5" color="gray" className="ml-auto mr-auto w-56">Schema constructor:</Typography>
-            <div className="flex gap-1 text-md justify-center">
+            <h5 className="mx-auto w-56">Schema constructor:</h5>
+            <div className="grid grid-cols-[2fr_4fr_2fr_4fr_2fr_4fr_2fr] gap-1 text-md justify-evenly mb-4">
                 <input
                     type="text"
                     value={customSchema.prefix}
                     name="prefix"
                     onChange={handleChange}
-                    className="border-2 border-blue-gray-100 w-[2rem] text-black text-center p-1"
+                    className="w-full border-2 border-lime-300/75 outline-lime-500 text-black text-center p-1 \
+                    dark:bg-slate-900 dark:text-slate-200"
                 />
                 <select
                     name="arg1"
                     onChange={handleChange}
                     value={customSchema.arg1}
-                    className="border-2 border-blue-gray-100 w-[4rem] text-black bg-blue-gray-50 text-center p-0"
+                    className="w-full bg-lime-500 dark:bg-lime-500/75 text-white text-center p-0"
                 >
                     <option value={SongName.Time}>{SongName.Time}</option>
                     <option value={SongName.Title}>{SongName.Title}</option>
@@ -55,13 +55,14 @@ function CustomSchemaInput({ setTags, tags }: Props) {
                     value={customSchema.divider1}
                     name="divider1"
                     onChange={handleChange}
-                    className="border-2 border-blue-gray-100 w-[2rem] text-black text-center p-1"
+                    className="w-full border-2 border-lime-300/75 outline-lime-500 text-black text-center p-1 \
+                    dark:bg-slate-900 dark:text-slate-200"
                 />
                 <select
                     name="arg2"
                     onChange={handleChange}
                     value={customSchema.arg2}
-                    className="border-2 border-blue-gray-100 w-[4rem] text-black bg-blue-gray-50 text-center p-0"
+                    className="w-full bg-lime-500 dark:bg-lime-500/75 text-white text-center p-0"
                 >
                     <option value={SongName.Time}>{SongName.Time}</option>
                     <option value={SongName.Title}>{SongName.Title}</option>
@@ -74,13 +75,14 @@ function CustomSchemaInput({ setTags, tags }: Props) {
                     value={customSchema.divider2}
                     name="divider2"
                     onChange={handleChange}
-                    className="border-2 border-blue-gray-100 w-[2rem] text-black text-center p-1"
+                    className="w-full border-2 border-lime-300/75 outline-lime-500 text-black text-center p-1 \
+                    dark:bg-slate-900 dark:text-slate-200"
                 />
                 <select
                     name="arg3"
                     onChange={handleChange}
                     value={customSchema.arg3}
-                    className="border-2 border-blue-gray-100 w-[4rem] text-black bg-blue-gray-50 text-center p-0"
+                    className="w-full bg-lime-500 dark:bg-lime-500/75 text-white text-center p-0"
                 >
                     <option value={SongName.Time}>{SongName.Time}</option>
                     <option value={SongName.Title}>{SongName.Title}</option>
@@ -93,7 +95,8 @@ function CustomSchemaInput({ setTags, tags }: Props) {
                     value={customSchema.postfix}
                     name="postfix"
                     onChange={handleChange}
-                    className="border-2 border-blue-gray-100 w-[2rem] text-black text-center p-1"
+                    className="w-full border-2 border-lime-300/75 outline-lime-500 text-black text-center p-1 \
+                    dark:bg-slate-900 dark:text-slate-200"
                 />
             </div>
         </div>
