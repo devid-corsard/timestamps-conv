@@ -15,7 +15,7 @@ function AlbumInfo({ tags, setTags }: Props) {
     };
 
     return <div className="flex flex-col">
-        <div className="grid grid-cols-[2fr_3fr] mb-4 md:grid-cols-2">
+        <div className="grid grid-cols-[2fr_3fr] items-center mb-4 md:grid-cols-2">
             <p>Select parsing schema:</p>
             <select
                 name="schema"
@@ -32,7 +32,7 @@ function AlbumInfo({ tags, setTags }: Props) {
             </select>
         </div>
         {tags.schema == Schemas.E && <CustomSchemaInput tags={tags} setTags={setTags} />}
-        <div className="grid grid-cols-[1fr_3fr] grid-rows-1 gap-1">
+        <div className="grid grid-cols-[1fr_3fr] grid-rows-1 gap-1 items-center">
             <span>Date:</span>
             <input
                 type="text"

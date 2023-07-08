@@ -30,7 +30,6 @@ function App() {
         }
     };
 
-
     return (
         <div className='flex flex-col gap-4 p-2 md:max-w-3xl md:mx-auto text-lg dark:text-slate-300'>
             <h1 className="bg-gradient-to-br from-lime-500 to-orange-500 bg-clip-text text-transparent \
@@ -43,7 +42,7 @@ function App() {
                 className='h-[10rem] text-md border-2 p-2 border-lime-300 outline-lime-500 \
                 dark:text-slate-300 dark:bg-slate-900'
             ></textarea>
-            <div className='grid grid-cols-[2fr_3fr] md:grid-cols-2'>
+            <div className='grid grid-cols-[2fr_3fr] items-center md:grid-cols-2'>
                 <p>Select output format:</p>
                 <select
                     value={format}
