@@ -86,6 +86,8 @@ const parseByCustomSchema = (input: string, customSchema: CustomSchema): Song[] 
                         : 0;
                 });
 
+            song.time = timeFormat(song.time);
+
             return song
         });
 
